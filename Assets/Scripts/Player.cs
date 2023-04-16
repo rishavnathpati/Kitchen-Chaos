@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -23,6 +22,6 @@ public class Player : MonoBehaviour
     
     public bool IsWalking()
     {
-        return Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
+        return gameInput.GetMovementVectorNormalised() != Vector2.zero;
     }
 }
