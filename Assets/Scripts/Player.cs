@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
     private Transform _playerTransform;
+    [SerializeField] private GameInput gameInput;
 
     private void Start()
     {
@@ -11,13 +13,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        var inputVector = new Vector2(0, 0);
-        if (Input.GetKey(KeyCode.W)) inputVector.y += 1;
-        if (Input.GetKey(KeyCode.S)) inputVector.y -= 1;
-        if (Input.GetKey(KeyCode.A)) inputVector.x -= 1;
-        if (Input.GetKey(KeyCode.D)) inputVector.x += 1;
-
-        inputVector = inputVector.normalized;
+        var inputVector = gameInput.GetMovementVectorNormalised();
         
         var moveDir = new Vector3(inputVector.x, 0, inputVector.y);
         
